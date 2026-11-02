@@ -6,6 +6,8 @@ cryptographic algorithms.
 The content is placeholder only for now. Pages will be filled in as the
 language is finalised.
 
+View the page at: https://bartek-pawlik.github.io/QuLang-Documentation/
+
 ## Layout
 
 ```
