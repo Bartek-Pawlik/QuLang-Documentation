@@ -1,28 +1,33 @@
 /* QuLang documentation styles. */
 
+/* Navy (#14213d) and cream (#f4ede0). Light mode is cream with navy; dark mode
+   swaps them round. */
 :root {
-    --bg: #ffffff;
-    --surface: #f6f8fb;
-    --surface-2: #eef2f7;
-    --border: #dfe5ee;
-    --text: #1e2430;
-    --muted: #5f6b7d;
-    --heading: #111827;
-    --bar: #121a2f;
-    --bar-text: #d9e2f2;
-    --bar-muted: #a3b1c9;
-    --bar-field: #1d2742;
-    --accent: #0d9488;
-    --accent-bright: #2dd4bf;
-    --accent-soft: #e6f7f5;
-    --link: #0f766e;
-    --link-hover: #115e59;
+    --bg: #f4ede0;
+    --surface: #ece3d2;
+    --surface-2: #e4d9c4;
+    --border: #d8cbb3;
+    --text: #1f2a40;
+    --muted: #555b6a;
+    --heading: #14213d;
+    --bar: #14213d;
+    --bar-text: #f4ede0;
+    --bar-muted: #bdb8ae;
+    --bar-field: #1e2d4f;
+    --bar-field-border: #33466e;
+    --accent: #14213d;
+    --accent-bright: #f4ede0;   /* accents inside the navy bar */
+    --accent-soft: rgba(20, 33, 61, 0.08);
+    --on-accent: #f4ede0;       /* text on an --accent background */
+    --link: #2b4a82;
+    --link-hover: #14213d;
+    --shadow: rgba(20, 33, 61, 0.18);
 
-    --keyword-bg: #e6f7f5;  --keyword-fg: #0f766e;
-    --section-bg: #eef0fe;  --section-fg: #4338ca;
-    --command-bg: #fdf3e1;  --command-fg: #8a5300;
-    --error-bg: #fdecef;    --error-fg: #b4233c;
-    --page-bg: #eef1f5;     --page-fg: #475569;
+    --keyword-bg: rgba(20, 33, 61, 0.09);   --keyword-fg: #14213d;
+    --section-bg: rgba(47, 93, 80, 0.13);   --section-fg: #2a5547;
+    --command-bg: rgba(166, 110, 20, 0.15); --command-fg: #74460a;
+    --error-bg: rgba(163, 38, 47, 0.11);    --error-fg: #962230;
+    --page-bg: rgba(92, 98, 114, 0.13);     --page-fg: #4a5060;
 
     --radius: 3px;
     --font: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
@@ -31,25 +36,28 @@
 
 @media (prefers-color-scheme: dark) {
     :root {
-        --bg: #0f1422;
-        --surface: #161d2e;
-        --surface-2: #1d2639;
-        --border: #2a3550;
-        --text: #dbe3f0;
-        --muted: #94a3b8;
-        --heading: #f1f5f9;
-        --bar: #0a0f1c;
-        --bar-field: #161f36;
-        --accent: #2dd4bf;
-        --accent-soft: rgba(45, 212, 191, 0.12);
-        --link: #5eead4;
-        --link-hover: #99f6e4;
+        --bg: #14213d;
+        --surface: #1a2949;
+        --surface-2: #213256;
+        --border: #2e4068;
+        --text: #e9e2d4;
+        --muted: #a9adb6;
+        --heading: #f4ede0;
+        --bar: #0e1830;
+        --bar-field: #18264a;
+        --bar-field-border: #2e4068;
+        --accent: #f4ede0;
+        --accent-soft: rgba(244, 237, 224, 0.10);
+        --on-accent: #14213d;
+        --link: #a9c1ec;
+        --link-hover: #d3e0f7;
+        --shadow: rgba(0, 0, 0, 0.35);
 
-        --keyword-bg: rgba(45, 212, 191, 0.14);  --keyword-fg: #5eead4;
-        --section-bg: rgba(129, 140, 248, 0.16); --section-fg: #a5b4fc;
-        --command-bg: rgba(251, 191, 36, 0.14);  --command-fg: #fcd34d;
-        --error-bg: rgba(251, 113, 133, 0.14);   --error-fg: #fda4af;
-        --page-bg: rgba(148, 163, 184, 0.16);    --page-fg: #cbd5e1;
+        --keyword-bg: rgba(244, 237, 224, 0.12); --keyword-fg: #f4ede0;
+        --section-bg: rgba(134, 200, 170, 0.14); --section-fg: #a6d8c0;
+        --command-bg: rgba(240, 190, 100, 0.14); --command-fg: #f0cc85;
+        --error-bg: rgba(250, 130, 140, 0.14);   --error-fg: #f5a8ae;
+        --page-bg: rgba(180, 185, 200, 0.14);    --page-fg: #c9cdd6;
     }
 }
 
@@ -68,6 +76,9 @@ body {
 
 a { color: var(--link); text-decoration: none; }
 a:hover, a:focus-visible { color: var(--link-hover); text-decoration: underline; }
+
+/* Links in running text are close in colour to the text, so underline them too. */
+.page p a, .section ul a { text-decoration: underline; text-underline-offset: 2px; text-decoration-thickness: 1px; }
 
 code, pre { font-family: var(--mono); font-size: 0.92em; }
 
@@ -92,8 +103,8 @@ code, pre { font-family: var(--mono); font-size: 0.92em; }
     padding: 10px 24px;
 }
 
-.brand { display: flex; align-items: baseline; gap: 7px; color: #ffffff; }
-.brand:hover, .brand:focus-visible { color: #ffffff; text-decoration: none; }
+.brand { display: flex; align-items: baseline; gap: 7px; color: var(--bar-text); }
+.brand:hover, .brand:focus-visible { color: var(--bar-text); text-decoration: none; }
 .brand .name { font-weight: 700; font-size: 17px; }
 .version { font-size: 12px; color: var(--bar-muted); }
 
@@ -105,8 +116,8 @@ code, pre { font-family: var(--mono); font-size: 0.92em; }
     padding: 6px 10px;
 }
 
-.mainnav a:hover, .mainnav a:focus-visible { color: #ffffff; text-decoration: none; }
-.mainnav a.active { color: #ffffff; box-shadow: inset 0 -2px 0 var(--accent-bright); }
+.mainnav a:hover, .mainnav a:focus-visible { color: var(--bar-text); text-decoration: none; }
+.mainnav a.active { color: var(--bar-text); box-shadow: inset 0 -2px 0 var(--accent-bright); }
 
 .subbar {
     display: flex;
@@ -136,10 +147,10 @@ code, pre { font-family: var(--mono); font-size: 0.92em; }
 .search input {
     width: 260px;
     padding: 6px 10px;
-    border: 1px solid #2c3858;
+    border: 1px solid var(--bar-field-border);
     border-radius: var(--radius);
     background: var(--bar-field);
-    color: #ffffff;
+    color: var(--bar-text);
     font: inherit;
     font-size: 14px;
 }
@@ -158,7 +169,7 @@ code, pre { font-family: var(--mono); font-size: 0.92em; }
     background: var(--bg);
     border: 1px solid var(--border);
     border-radius: var(--radius);
-    box-shadow: 0 6px 16px rgba(10, 15, 28, 0.2);
+    box-shadow: 0 6px 16px var(--shadow);
 }
 
 #search-results a {
@@ -312,11 +323,7 @@ pre.example {
 
 .segmented button:first-child { border-left: 0; }
 .segmented button:hover { color: var(--text); }
-.segmented button[aria-selected="true"] { background: var(--accent); color: #ffffff; }
-
-@media (prefers-color-scheme: dark) {
-    .segmented button[aria-selected="true"] { color: #0a0f1c; }
-}
+.segmented button[aria-selected="true"] { background: var(--accent); color: var(--on-accent); }
 
 table.summary { width: 100%; border-collapse: collapse; }
 
@@ -350,7 +357,7 @@ table.summary td:first-child a { font-weight: 600; }
 }
 
 .letters a { background: var(--accent-soft); }
-.letters a:hover { text-decoration: none; background: var(--accent); color: #ffffff; }
+.letters a:hover { text-decoration: none; background: var(--accent); color: var(--on-accent); }
 .letters span { color: var(--border); }
 
 .index-group { margin-top: 28px; }
